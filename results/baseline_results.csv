@@ -1,0 +1,28 @@
+timestamp,model,prompt,input_tokens,output_tokens,total_tokens,latency,response
+2026-08-06 22:41:05,claude-haiku-4-5-20251001,Explain Newton's Second Law in simple words.,17,248,265,3.991,"# Newton's Second Law in Simple Terms
+
+**The basic idea:** The harder you push something, the faster it speeds up. The heavier something is, the harder you need to push it.
+
+## Breaking it down:
+
+**Force** = how hard you're pushing or pulling
+
+**Mass** = how heavy something is
+
+**Acceleration** = how quickly something speeds up
+
+### The simple formula:
+**Force = Mass × Acceleration**
+
+(Or: F = ma)
+
+## Real-world examples:
+
+- **Pushing a shopping cart:** It's easy to push an empty cart (low mass), so it speeds up quickly. A full cart (high mass) is harder to push and speeds up slower.
+
+- **Kicking a soccer ball vs. a bowling ball:** Kicking with the same force moves the light soccer ball much faster than the heavy bowling ball.
+
+- **Car engines:** A bigger engine (more force) makes a car accelerate faster. A heavier car (more mass) accelerates slower with the same engine power.
+
+## Bottom line:
+More force = faster speed-up. More weight = slower speed-up."

@@ -1,0 +1,10 @@
+anthropic
+python-dotenv
+pandas
+numpy
+langchain
+langgraph
+transformers
+datasets
+tqdm
+tiktoken
