@@ -1,28 +1,49 @@
-timestamp,model,prompt,input_tokens,output_tokens,total_tokens,latency,response
-2026-08-06 22:41:05,claude-haiku-4-5-20251001,Explain Newton's Second Law in simple words.,17,248,265,3.991,"# Newton's Second Law in Simple Terms
+timestamp,benchmark,sample_id,model,prompt,original_prompt,input_tokens,output_tokens,total_tokens,latency,compression_ratio,token_reduction,response,ground_truth,predicted_answer,actual_answer,correct,original_token_count,compressed_token_count
+2026-09-06 14:43:29,gsm8k_baseline,18,claude-haiku-4-5-20251001,Claire makes a 3 egg omelet every morning for breakfast.  How many dozens of eggs will she eat in 4 weeks?,Claire makes a 3 egg omelet every morning for breakfast.  How many dozens of eggs will she eat in 4 weeks?,36,103,139,2.692,1.0,0.0,"# Eggs Claire Eats in 4 Weeks
 
-**The basic idea:** The harder you push something, the faster it speeds up. The heavier something is, the harder you need to push it.
+**Eggs per day:** 3 eggs
 
-## Breaking it down:
+**Days in 4 weeks:** 4 × 7 = 28 days
 
-**Force** = how hard you're pushing or pulling
+**Total eggs:** 3 × 28 = 84 eggs
 
-**Mass** = how heavy something is
+**Convert to dozens:** 84 ÷ 12 = **7 dozens**
 
-**Acceleration** = how quickly something speeds up
+Claire will eat 7 dozens of eggs in 4 weeks.","She eats 3 eggs every day and there are 7 days in a week so she eats 3*7 = <<3*7=21>>21 eggs a week
+After 4 weeks she will have eaten 4*21 = <<4*21=84>>84 eggs
+There are 12 eggs in 1 dozen and she'll eat 84 eggs so that's 84/12 = <<84/12=7>>7 dozen eggs
+#### 7",4,7,False,21,21
+2026-09-06 14:43:32,gsm8k_baseline,11,claude-haiku-4-5-20251001,"Toula went to the bakery and bought various types of pastries. She bought 3 dozen donuts which cost $68 per dozen, 2 dozen mini cupcakes which cost $80 per dozen, and 6 dozen mini cheesecakes for $55 per dozen. How much was the total cost?","Toula went to the bakery and bought various types of pastries. She bought 3 dozen donuts which cost $68 per dozen, 2 dozen mini cupcakes which cost $80 per dozen, and 6 dozen mini cheesecakes for $55 per dozen. How much was the total cost?",79,105,184,2.481,1.0,0.0,"# Calculating Toula's Total Bakery Cost
 
-### The simple formula:
-**Force = Mass × Acceleration**
+**Donuts:**
+- 3 dozen × $68 per dozen = $204
 
-(Or: F = ma)
+**Mini Cupcakes:**
+- 2 dozen × $80 per dozen = $160
 
-## Real-world examples:
+**Mini Cheesecakes:**
+- 6 dozen × $55 per dozen = $330
 
-- **Pushing a shopping cart:** It's easy to push an empty cart (low mass), so it speeds up quickly. A full cart (high mass) is harder to push and speeds up slower.
+**Total Cost:**
+$204 + $160 + $330 = **$694**","The total charge for the doughnuts was 3 x $68 = $<<3*68=204>>204.
+The total charge for the mini cupcakes was 2 x $80 = $<<2*80=160>>160.
+The total charge for the mini cheesecakes was 6 x $55 = $<<6*55=330>>330.
+Therefore the total amount Toula paid for the pastries was $204 + $160 + $330 = $<<204+160+330=694>>694.
+#### 694",694,694,True,45,45
+2026-09-06 14:43:35,gsm8k_baseline,4,claude-haiku-4-5-20251001,"Every day, Wendi feeds each of her chickens three cups of mixed chicken feed, containing seeds, mealworms and vegetables to help keep them healthy.  She gives the chickens their feed in three separate meals. In the morning, she gives her flock of chickens 15 cups of feed.  In the afternoon, she gives her chickens another 25 cups of feed.  How many cups of feed does she need to give her chickens in the final meal of the day if the size of Wendi's flock is 20 chickens?","Every day, Wendi feeds each of her chickens three cups of mixed chicken feed, containing seeds, mealworms and vegetables to help keep them healthy.  She gives the chickens their feed in three separate meals. In the morning, she gives her flock of chickens 15 cups of feed.  In the afternoon, she gives her chickens another 25 cups of feed.  How many cups of feed does she need to give her chickens in the final meal of the day if the size of Wendi's flock is 20 chickens?",129,143,272,3.166,1.0,0.0,"# Finding the Final Meal's Feed
 
-- **Kicking a soccer ball vs. a bowling ball:** Kicking with the same force moves the light soccer ball much faster than the heavy bowling ball.
+**Total daily feed needed:**
+- Each chicken needs 3 cups per day
+- With 20 chickens: 20 × 3 = 60 cups total
 
-- **Car engines:** A bigger engine (more force) makes a car accelerate faster. A heavier car (more mass) accelerates slower with the same engine power.
+**Feed given in first two meals:**
+- Morning: 15 cups
+- Afternoon: 25 cups
+- Subtotal: 15 + 25 = 40 cups
 
-## Bottom line:
-More force = faster speed-up. More weight = slower speed-up."
+**Feed needed for the final meal:**
+- 60 - 40 = **20 cups**
+
+Wendi needs to give her chickens 20 cups of feed in the final meal of the day.","If each chicken eats 3 cups of feed per day, then for 20 chickens they would need 3*20=<<3*20=60>>60 cups of feed per day.
+If she feeds the flock 15 cups of feed in the morning, and 25 cups in the afternoon, then the final meal would require 60-15-25=<<60-15-25=20>>20 cups of chicken feed.
+#### 20",20,20,True,87,87

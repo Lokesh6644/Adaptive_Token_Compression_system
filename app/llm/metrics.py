@@ -15,8 +15,8 @@ class Metrics:
 
     def build_metrics(self, response):
 
-        input_tokens = response.usage.input_tokens
-        output_tokens = response.usage.output_tokens
+        input_tokens = response["input_tokens"]
+        output_tokens = response["output_tokens"]
 
         return {
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),

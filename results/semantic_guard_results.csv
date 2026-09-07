@@ -1,0 +1,10 @@
+test_type,case_id,original_text,compressed_text,compression_type,semantic_similarity,threshold,guard_passed,original_tokens,compressed_tokens,token_reduction_pct,compression_time_sec
+standalone,1,John has 10 apples. He gives 3 to his friend and then buys 5 more. How many apples does he have?,"John has 10 apples. Gives 3 to friend, buys 5 more. How many apples?",good_compression,0.9792,0.8,True,21,14,33.33,
+standalone,1,John has 10 apples. He gives 3 to his friend and then buys 5 more. How many apples does he have?,John 10 friend buys apples?,bad_compression,0.7334,0.8,False,21,5,76.19,
+standalone,2,A train travels 60 km in 2 hours. What is its average speed in kilometers per hour?,Train travels 60 km in 2 hours. What average speed?,good_compression,0.9456,0.8,True,17,10,41.18,
+standalone,2,A train travels 60 km in 2 hours. What is its average speed in kilometers per hour?,Train 60 2 speed?,bad_compression,0.693,0.8,False,17,4,76.47,
+standalone,3,"There are 24 students in a class. If they are divided equally into 4 groups, how many students are in each group?",24 students divided equally into 4 groups. How many per group?,good_compression,0.9533,0.8,True,22,11,50.0,
+standalone,3,"There are 24 students in a class. If they are divided equally into 4 groups, how many students are in each group?",24 4 group?,bad_compression,0.6262,0.8,False,22,3,86.36,
+adaptive_with_guard,1,John has 10 apples. He gives 3 to his friend and then buys 5 more. How many apples does he have?,John 10 apples gives 3 buys 5 more many apples,adaptive,0.8247,0.8,True,27,13,51.85,0.7952
+adaptive_with_guard,2,A train travels 60 km in 2 hours. What is its average speed in kilometers per hour?,train travels 60 km 2 hours average speed hour,adaptive,0.9028,0.8,True,21,11,47.62,0.5028
+adaptive_with_guard,3,"There are 24 students in a class. If they are divided equally into 4 groups, how many students are in each group?",24 students class divided into 4 groups many students each group,adaptive,0.8705,0.8,True,27,12,55.56,0.5641

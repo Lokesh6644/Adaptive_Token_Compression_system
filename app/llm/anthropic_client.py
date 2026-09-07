@@ -1,11 +1,14 @@
 from anthropic import Anthropic
+
 from app.utils.config import ANTHROPIC_API_KEY
 
 
 class ClaudeClient:
 
     def __init__(self):
-        self.client = Anthropic(api_key=ANTHROPIC_API_KEY)
+        self.client = Anthropic(
+            api_key=ANTHROPIC_API_KEY
+        )
 
     def generate(
         self,
@@ -25,4 +28,16 @@ class ClaudeClient:
             ]
         )
 
-        return response
+        # Claude response text
+        text = response.content[0].text
+
+        # Claude usage information
+        input_tokens = response.usage.input_tokens
+        output_tokens = response.usage.output_tokens
+
+        return {
+            "model": model,
+            "text": text,
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+        }

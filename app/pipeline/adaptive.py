@@ -1,21 +1,16 @@
 from app.llm.gemini_client import GeminiClient
 from app.llm.metrics import Metrics
-from app.compression.fixed_ratio import FixedRatioCompressor
+from app.compression.adaptive import AdaptiveCompressor
 
 
-class BaselinePipeline:
+class AdaptivePipeline:
 
-    def __init__(self, compression_ratio=None):
+    def __init__(self):
 
         self.client = GeminiClient()
         self.metrics = Metrics()
 
-        self.compressor = None
-
-        if compression_ratio is not None:
-            self.compressor = FixedRatioCompressor(
-                ratio=compression_ratio
-            )
+        self.compressor = AdaptiveCompressor()
 
     def run(self, prompt):
 
@@ -26,21 +21,20 @@ class BaselinePipeline:
         # Count original tokens
         original_token_count = len(prompt.split())
 
-        # Initially, compressed count = original count
-        compressed_token_count = original_token_count
+        # Convert prompt to tokens
+        tokens = prompt.split()
 
-        # Apply compression if enabled
-        if self.compressor is not None:
+        # Adaptive compression
+        result = self.compressor.compress(tokens)
 
-            tokens = prompt.split()
+        compressed_tokens = result["tokens"]
 
-            compressed_tokens = self.compressor.compress(tokens)
+        # Convert tokens back to prompt
+        prompt = " ".join(compressed_tokens)
 
-            prompt = " ".join(compressed_tokens)
+        compressed_token_count = len(compressed_tokens)
 
-            compressed_token_count = len(compressed_tokens)
-
-        # Calculate compression metrics
+        # Compression metrics
         compression_ratio = (
             compressed_token_count / original_token_count
             if original_token_count > 0
@@ -49,8 +43,8 @@ class BaselinePipeline:
 
         token_reduction = 1 - compression_ratio
 
-        # Send compressed/original prompt to LLM
-        result = self.client.generate(prompt)
+        # Send compressed prompt to Gemini
+        response = self.client.generate(prompt)
 
         latency = self.metrics.stop_timer()
 
@@ -62,23 +56,29 @@ class BaselinePipeline:
             "compression_ratio": compression_ratio,
             "token_reduction": token_reduction,
 
+            # Adaptive information
+            "difficulty": result["difficulty"],
+            "selected_ratio": result["ratio"],
+            "semantic_similarity": result["semantic_similarity"],
+            "guard_passed": result["guard_passed"],
+
             # Model information
-            "model": result["model"],
+            "model": response["model"],
 
             # Prompts
             "original_prompt": original_prompt,
             "prompt": prompt,
 
             # Response
-            "response": result["text"],
+            "response": response["text"],
 
             # LLM metrics
-            "input_tokens": result["input_tokens"],
-            "output_tokens": result["output_tokens"],
+            "input_tokens": response["input_tokens"],
+            "output_tokens": response["output_tokens"],
 
             "total_tokens": (
-                result["input_tokens"]
-                + result["output_tokens"]
+                response["input_tokens"]
+                + response["output_tokens"]
             ),
 
             "latency": latency
